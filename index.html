@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <title>Twitch TV</title> 
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>Twitch TV</title> 
+</head>
 
-  <body>
+<body>
 
-  </body>
 
- <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
+
+  <div id="container">
+
+    <div id='box'>
+      <img id='header_h1'src= 'http://fontmeme.com/permalink/170408/11e0145db5007386631bd5eaf8eab1f5.png'>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li id="all"><a href="#">All</a></li>
+            <li id="online"><a href="#">Online</a></li>
+            <li id="offline"><a href="#">Offline</a></li>
+            <li id="search"><a href="#">Search</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div id='searchBox'>
+        <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">'
+      </div>
+      <div id="users"></div>
+    </div>
+    <div id="rectangle"></div>
+    <div id="triangle-topright"></div>
+
+  </div>
+</body>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js'></script>
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
@@ -22,6 +51,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="client.js"></script> 
 <script src="app.js"></script> 
- <link rel="stylesheet" type="text/css" href="styles.css">
+<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
 
 </html>
