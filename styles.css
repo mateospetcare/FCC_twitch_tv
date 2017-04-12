@@ -43,10 +43,8 @@ h1 {
   padding: 8px;
 }
 
-
-
 .non_live_channel, .live {
-  border: 2px solid #6441a5;
+  border: 1px solid #6441a5;
 }
 
 a {
@@ -58,6 +56,10 @@ a:hover {
   color: #6441a5; 
   text-decoration: none; 
   cursor: pointer;  
+}
+
+li {
+  list-style-type: none;
 }
 
 #users {
