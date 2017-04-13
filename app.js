@@ -36,9 +36,9 @@ function createEachUser(data){
     _.each(data, function(userArr){
       _.each(userArr, function(userObj){
         if(userObj.logo){
-          $('#users').append('<li class="non_live_channel"><img id="user_img" src='+userObj.logo+'><a target="_blank" href=https://www.twitch.tv/'+userObj.name+'><h1>'+userObj.display_name+'</h1></a><div class="live_status_circle" id='+userObj.name+'></div></li>');
+          $('#users').append('<li class="non_live_channel"><img id="user_img" src='+userObj.logo+'><a target="_blank" href=https://www.twitch.tv/'+userObj.name+'><h1>'+userObj.display_name+'</h1></a><h4 id="title"></h4><div class="live_status_circle" id='+userObj.name+'></div></li>');
             } else {
-          $('#users').append('<li class="non_live_channel"><img id="user_img" src=bolt.png><a target="_blank" href=https://www.twitch.tv/'+userObj.name+'><h1>'+userObj.display_name+'</h1></a><div class="live_status_circle" id='+userObj.name+'></div></li>');
+          $('#users').append('<li class="non_live_channel"><img id="user_img" src=bolt.png><a target="_blank" href=https://www.twitch.tv/'+userObj.name+'><h1>'+userObj.display_name+'</h1></a><h4 id="title"></h4><div class="live_status_circle" id='+userObj.name+'></div></li>');
         }
       })
     })
@@ -66,6 +66,19 @@ function checkLiveStream(data){
         $(live_channel).css( "background-color", "#74FF31"); 
         $(live_channel).parent().addClass("live");
         $(live_channel).parent().removeClass('non_live_channel'); 
+        var channelName = data.stream.channel.name;
+        var divs = document.getElementById('users');
+        var user = divs.getElementsByClassName('live')
+        
+        for(var i = 0; i < user.length; i++){
+          
+          if(user[i].innerText.toUpperCase() === channelName.toUpperCase()){
+            console.log(user[i].innerText, channelName, data.stream.channel.status)
+            var channelName = channelName.toLowerCase(); 
+             $('#'+channelName).prev()[0].innerText = data.stream.channel.status
+          }
+        }
+        
         } 
       }
     });
@@ -78,12 +91,7 @@ function checkLiveStream(data){
   });
 };
 
-//hide searchBox from other pages
-function hideSearchBox(){
-  $('#search').hide();
-  $('#users').css({'margin-top': '141px'}) 
-  $('#searchBox').hide();
-}
+
 
 $('#all').on('click', function(){
   $('#searchBox').hide();
@@ -94,9 +102,11 @@ $('#all').on('click', function(){
 });
 
 $('#online').on('click', function(){
- var users = channels.join()
+  $('#searchBox').hide();
+  $('#users').css({'margin-top': '141px'}) 
+  $('#search').show();
+  var users = channels.join()
   var url = 'https://api.twitch.tv/kraken/users?login='+users+'&api_version=5'
-  hideSearchBox()
 
   var ajaxOptions = {
   headers: { 
@@ -117,9 +127,11 @@ $('#online').on('click', function(){
 });
 
 $('#offline').on('click', function(){
-   var users = channels.join()
+  $('#searchBox').hide();
+  $('#users').css({'margin-top': '141px'}) 
+  $('#search').show();
+  var users = channels.join()
   var url = 'https://api.twitch.tv/kraken/users?login='+users+'&api_version=5'
-  hideSearchBox()
 
   var ajaxOptions = {
   headers: { 
@@ -152,7 +164,7 @@ $('#srch-term').keyup(function(event) {
 
  });
 
-
+//need to modify so can search specific elements
 function filterDom(word){
    
   // Declare variables

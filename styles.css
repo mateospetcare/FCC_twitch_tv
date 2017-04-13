@@ -4,17 +4,17 @@
 
 #box {
   height: 180px;
-  width: 400px;
+  width: 500px;
   border-left: solid #6441a5 2px;
   position: absolute; 
-  margin: 50px 0 50px 400px;
+  margin: 50px 0 50px 450px;
   z-index: 10001;
 }
 
 #rectangle {
   position: absolute;
-  margin: 50px 0 50px 400px;
-  width: 400px;
+  margin: 50px 0 50px 450px;
+  width: 500px;
   height: 80px;
   background: #6441a5;
 }
@@ -22,17 +22,28 @@
 #triangle-topright {
   position: absolute; 
   top: 80px;
-  margin: 50px 0 50px 400px;
+  margin: 50px 0 50px 450px;
   border-top: 100px solid #6441a5;
-  border-left: 400px solid transparent;
+  border-left: 500px solid transparent;
 }
 
 #header_h1 {
   margin: 15px 0 0 15px;
 }
 
+.live {
+  position: relative;
+}
+
 h1 {
   display: inline;
+  position: relative;
+}
+
+h4 {
+  display: inline;
+  position: absolute;
+  margin: 40px 0 0 -98px;
 }
 
 #user_img { 
@@ -57,9 +68,13 @@ a:hover {
   text-decoration: none; 
   cursor: pointer;  
 }
-
 li {
   list-style-type: none;
+}
+
+li.live {
+  list-style-type: none;
+  height: 80px;
 }
 
 #users {
@@ -87,6 +102,10 @@ li {
   margin-left: -2px;
   border-left: 2px solid #6441a5;
   border-right: 2px solid #6441a5;
+}
+
+.dropdown-menu li {
+  height: 30px;
 }
 
 
