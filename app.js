@@ -71,15 +71,12 @@ function checkLiveStream(data){
         var user = divs.getElementsByClassName('live')
         
         for(var i = 0; i < user.length; i++){
-          
           if(user[i].innerText.toUpperCase() === channelName.toUpperCase()){
-            console.log(user[i].innerText, channelName, data.stream.channel.status)
             var channelName = channelName.toLowerCase(); 
              $('#'+channelName).prev()[0].innerText = data.stream.channel.status
+            }
           }
         }
-        
-        } 
       }
     });
   };
@@ -94,14 +91,24 @@ function checkLiveStream(data){
 
 
 $('#all').on('click', function(){
+  $(this).data('clicked', true);
+  $("#srch-term").val("");
   $('#searchBox').hide();
   $('#users').css({'margin-top': '141px'}) 
   $('#search').show();
   $('.non_live_channel').show();
   $('.live').show();
+  $('#srch-term').keyup(function(event) {
+    var wholeWord =""; 
+    var wordTyped = $("#srch-term").val();
+    wholeWord += wordTyped;
+    filterDomAll(wholeWord);
+  });
 });
 
 $('#online').on('click', function(){
+  $(this).data('clicked', true);
+  $("#srch-term").val("");
   $('#searchBox').hide();
   $('#users').css({'margin-top': '141px'}) 
   $('#search').show();
@@ -117,16 +124,26 @@ $('#online').on('click', function(){
     url: url,
     success: function(data) {
         createEachUser(data)
+        console.log($('#online'))
     }
   };
 
   $.ajax(ajaxOptions).done(function(){
     $('.non_live_channel').hide();
     $('.live').show();
+    //search box function to search words
+     $('#srch-term').keyup(function(event) {
+      var wholeWord =""; 
+      var wordTyped = $("#srch-term").val();
+      wholeWord += wordTyped;
+      filterDomLive(wholeWord);
+    });
   })
 });
 
 $('#offline').on('click', function(){
+  $(this).data('clicked', true);
+  $("#srch-term").val("");
   $('#searchBox').hide();
   $('#users').css({'margin-top': '141px'}) 
   $('#search').show();
@@ -148,24 +165,72 @@ $('#offline').on('click', function(){
   $.ajax(ajaxOptions).done(function(){
     $('.non_live_channel').show();
     $('.live').hide();
+    //search box function to search words
+    $('#srch-term').keyup(function(event) {
+      var wholeWord =""; 
+      var wordTyped = $("#srch-term").val();
+      wholeWord += wordTyped;
+      filterDomNonLive(wholeWord);
+    });
   })
 });
 
+//shows search box when clicked
 $('#search').on('click', function(){
   $('#searchBox').show();
-  $('#users').css({'margin-top': '0'}) 
-  }); 
+  $('#users').css({'margin-top': '0'});
+}); 
 
-$('#srch-term').keyup(function(event) {
-  var wholeWord =""; 
-  var wordTyped = $("#srch-term").val();
-  wholeWord += wordTyped;
-  filterDom(wholeWord);
-
- });
-
+//when search is clicked allows for search to happen
+if(!$('#offline').data('clicked') && !$('#online').data('clicked') && !$('#all').data('clicked')) {
+  //search box function to search words
+  $('#srch-term').keyup(function(event) {
+    var wholeWord =""; 
+    var wordTyped = $("#srch-term").val();
+    wholeWord += wordTyped;
+    filterDomAll(wholeWord);
+  });
+}
 //need to modify so can search specific elements
-function filterDom(word){
+function filterDomNonLive(word){
+ // Declare variables
+  var filter, ul, li, a, i;
+  filter = word.toUpperCase();
+  ul = document.getElementById("users");
+  li = ul.getElementsByClassName('non_live_channel');
+  // Loop through all list items, and hide those who don't match the search query
+    for (var i = 0; i < li.length; i++) {
+    a = li[i];
+    if (a.innerText.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+      $('.live').hide();
+      } else {
+      li[i].style.display = "none";
+      $('.live').hide();
+    }
+  }
+};
+
+function filterDomLive(word){
+ // Declare variables
+  var filter, ul, li, a, i;
+  filter = word.toUpperCase();
+  ul = document.getElementById("users");
+  li = ul.getElementsByClassName('live');
+  // Loop through all list items, and hide those who don't match the search query
+    for (var i = 0; i < li.length; i++) {
+    a = li[i];
+    if (a.innerText.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+      $('.non_live_channel').hide();
+      } else {
+      li[i].style.display = "none"
+      $('.non_live_channel').hide();
+    }
+  }
+};
+
+function filterDomAll(word){
    
   // Declare variables
   var filter, ul, li, a, i;
@@ -182,3 +247,5 @@ function filterDom(word){
     }
   }
 };
+
+

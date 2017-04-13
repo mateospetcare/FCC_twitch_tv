@@ -1,19 +1,24 @@
 #container { 
   position: relative;
+  top:0;
+  right:0px;
+  height: 750px;
+  width: auto;
+  
 }
 
 #box {
   height: 180px;
   width: 500px;
   border-left: solid #6441a5 2px;
-  position: absolute; 
+  position: relative; 
   margin: 50px 0 50px 450px;
   z-index: 10001;
 }
 
 #rectangle {
   position: absolute;
-  margin: 50px 0 50px 450px;
+  margin: -230px 450px;
   width: 500px;
   height: 80px;
   background: #6441a5;
@@ -21,8 +26,7 @@
 
 #triangle-topright {
   position: absolute; 
-  top: 80px;
-  margin: 50px 0 50px 450px;
+  margin: -150px 450px;
   border-top: 100px solid #6441a5;
   border-left: 500px solid transparent;
 }
@@ -36,26 +40,31 @@
 }
 
 h1 {
-  display: inline;
-  position: relative;
+  position: absolute;
+  top: -15px;
+  left: 50px;
 }
 
 h4 {
-  display: inline;
   position: absolute;
-  margin: 40px 0 0 -98px;
+  margin: 50px 40px;
 }
 
 #user_img { 
   height: 50px;
   width: auto;
   border-radius: 25px;
-  display: inline;
   padding: 8px;
+  position: absolute;
 }
 
 .non_live_channel, .live {
+  position: relative;
   border: 1px solid #6441a5;
+}
+
+.non_live_channel {
+  height: 50px;
 }
 
 a {
@@ -73,8 +82,9 @@ li {
 }
 
 li.live {
+  position: relative;
   list-style-type: none;
-  height: 80px;
+  height: 90px;
 }
 
 #users {
